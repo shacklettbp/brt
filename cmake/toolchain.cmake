@@ -46,7 +46,7 @@ function(brt_setup_toolchain)
     unset(MADRONA_USE_TOOLCHAIN CACHE)
 endfunction()
 
-if (NOT BRT_USE_BUNDLED_TOOLCHAIN)
+if (BRT_USE_BUNDLED_TOOLCHAIN)
   brt_setup_toolchain()
   unset(brt_setup_toolchain)
 endif()

@@ -43,6 +43,7 @@ add_library(brt STATIC
   rand.hpp rand.inl rand.cpp
   err.hpp err.inl err.cpp
   math.hpp math.inl
+  stack_alloc.hpp stack_alloc.inl stack_alloc.cpp
 )
 
 target_link_libraries(brt
