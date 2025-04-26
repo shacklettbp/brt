@@ -9,13 +9,17 @@ if (NOT PROJECT_NAME)
     list(APPEND LANGS OBJC)
   endif()
 
+  include(toolchain)
+
   project(brt LANGUAGES ${LANGS})
+
+  include(sys-detect)
+  include(cxx-setup)
 endif()
 
-add_subdirectory(deps)
-
-include(sys-detect)
-include(cxx-setup)
+if (BRT_USE_BUNDLED_TOOLCHAIN)
+  add_subdirectory(deps/toolchain)
+endif()
 
 add_library(brt-hdrs INTERFACE)
 cmake_path(GET CMAKE_CURRENT_SOURCE_DIR PARENT_PATH PARENT_SRC_DIR)
@@ -29,16 +33,16 @@ target_link_libraries(brt-common-flags INTERFACE
 )
 
 add_library(brt-libcxx INTERFACE)
-if (NOT WIN32 and NOT EMSCRIPTEN)
+if (BRT_USE_BUNDLED_TOOLCHAIN)
   target_link_libraries(brt-libcxx INTERFACE madrona_libcxx)
 endif ()
 
 add_library(brt STATIC
-  macros.hpp
+  macros.hpp span.hpp types.hpp
   utils.hpp utils.inl utils.cpp
   rand.hpp rand.inl rand.cpp
-  global_alloc.hpp global_alloc.cpp
-  rt.hpp rt.cpp rt_impl.hpp
+  err.hpp err.inl err.cpp
+  math.hpp math.inl
 )
 
 target_link_libraries(brt
