@@ -72,6 +72,9 @@ constexpr inline u32 u32Hash(u32 x);
 
 constexpr inline u32 u32mulhi(u32 a, u32 b);
 
+constexpr inline uint32_t int32Log2(uint32_t v);
+constexpr inline uint64_t int64Log2(uint64_t v);
+
 i32 u32NumDigits(u32 x);
 
 inline i64 computeBufferOffsets(const Span<i64> chunk_sizes,
