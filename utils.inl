@@ -187,18 +187,6 @@ constexpr inline u32 u32mulhi(u32 a, u32 b)
     return u32(m >> 32);
 }
 
-constexpr inline uint32_t int32Log2(uint32_t v)
-{
-  static_assert(std::is_same_v<int32_t, int>);
-
-  return sizeof(unsigned int) * 8 - __builtin_clz((int)v) - 1;
-}
-
-constexpr inline uint64_t int64Log2(uint64_t v)
-{
-  return sizeof(unsigned long long) * 8 - __builtin_clzll((long long)v) - 1;
-}
-
 inline i64 computeBufferOffsets(const Span<const i64> chunk_sizes,
                                 Span<i64> out_offsets,
                                 i64 pow2_alignment)
