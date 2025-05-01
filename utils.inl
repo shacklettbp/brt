@@ -116,10 +116,14 @@ constexpr inline i32 roundToAlignment(i32 offset, i32 alignment)
 
 inline uintptr_t alignPtrOffset(void *ptr, uintptr_t alignment)
 {
-    uintptr_t base = (uintptr_t)ptr;
-    static_assert(sizeof(uintptr_t) == sizeof(u64));
+  uintptr_t base = (uintptr_t)ptr;
+  if constexpr (sizeof(uintptr_t) == sizeof(u64)) {
     uintptr_t aligned = roundToAlignment((u64)base, (u64)alignment);
     return aligned - base;
+  } else if constexpr (sizeof(uintptr_t) == sizeof(u32)) {
+    uintptr_t aligned = roundToAlignment((u32)base, (u32)alignment);
+    return aligned - base;
+  }
 }
 
 inline void *alignPtr(void *ptr, uintptr_t alignment)
