@@ -32,8 +32,8 @@ function(brt_setup_toolchain)
       GIT_TAG 8c0b55b52c74f2a2f237c97be332bd5d579a39c1
       GIT_PROGRESS ON
       SOURCE_DIR "${DEPS_DIR}/toolchain"
-      BINARY_DIR "${DEPS_DIR}/toolchain-src-cmake"
-      SUBBUILD_DIR "${DEPS_DIR}/toolchain-src-cmake"
+      BINARY_DIR "${DEPS_DIR}/bundle-tmp"
+      SUBBUILD_DIR "${DEPS_DIR}/bundle-tmp"
   )
 
   include("${DEPS_DIR}/toolchain/cmake/set_toolchain.cmake")

@@ -17,9 +17,16 @@ if (NOT PROJECT_NAME)
   include(cxx-setup)
 endif()
 
+add_library(brt-libcxx INTERFACE)
 if (BRT_USE_BUNDLED_TOOLCHAIN)
-  add_subdirectory(deps/toolchain)
-endif()
+  target_link_libraries(brt-libcxx INTERFACE madrona_libcxx)
+endif ()
+
+install(TARGETS
+    brt-sys-defns brt-cxx-noexceptrtti brt-cxx-flags brt-libcxx
+  EXPORT brt)
+
+add_subdirectory(deps)
 
 add_library(brt-hdrs INTERFACE)
 cmake_path(GET CMAKE_CURRENT_SOURCE_DIR PARENT_PATH PARENT_SRC_DIR)
@@ -31,11 +38,6 @@ target_link_libraries(brt-common-flags INTERFACE
   brt-cxx-flags
   brt-cxx-noexceptrtti
 )
-
-add_library(brt-libcxx INTERFACE)
-if (BRT_USE_BUNDLED_TOOLCHAIN)
-  target_link_libraries(brt-libcxx INTERFACE madrona_libcxx)
-endif ()
 
 add_library(brt STATIC
   macros.hpp span.hpp types.hpp
@@ -52,3 +54,5 @@ target_link_libraries(brt
     brt-common-flags
     brt-libcxx
 )
+
+install(EXPORT brt DESTINATION "${CMAKE_INSTALL_PREFIX}")

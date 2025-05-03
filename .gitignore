@@ -1,1 +1,4 @@
-/deps/
+/deps/toolchain
+/deps/toolchain-src-cmake
+/deps/bundle-tmp
+/deps/gtest
