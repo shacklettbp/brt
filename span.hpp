@@ -18,21 +18,21 @@ namespace brt {
 template <typename T>
 class Span {
 public:
-  Span() : ptr_(nullptr), n_(0) {}
+  Span() : ptr(nullptr), n(0) {}
 
   Span(T *ptr, i64 num_elems)
-    : ptr_(ptr), n_(num_elems)
+    : ptr(ptr), n(num_elems)
   {}
 
   template <i64 N>
   Span(T (&arr)[N])
-    : ptr_(arr), n_(N)
+    : ptr(arr), n(N)
   {}
 
   template <typename U, i64 N>
   Span(const std::array<U, N> &arr)
       requires(std::is_same_v<std::remove_cv_t<T>, std::remove_cv_t<U>>)
-    : ptr_(arr.data()), n_(N)
+    : ptr(arr.data()), n(N)
   {}
 
   // GCC correctly warns that the below constructor is dangerous, but it's
@@ -43,7 +43,7 @@ public:
 #endif
   Span(std::initializer_list<std::remove_cv_t<T>> const && init BRT_LFBOUND)
       requires(std::is_const_v<T>)
-    : ptr_(init.begin()), n_(init.size())
+    : ptr(init.begin()), n(init.size())
   {}
 #ifdef BRT_CXX_GCC
 #pragma GCC diagnostic pop
@@ -51,21 +51,20 @@ public:
 
   template <typename U>
   Span(const U &u)
-    : ptr_(u.data()), n_(u.size())
+    : ptr(u.data()), n(u.size())
   {}
 
-  constexpr T * data() const { return ptr_; }
+  constexpr T * data() const { return ptr; }
 
-  constexpr i64 size() const { return n_; }
+  constexpr i64 size() const { return n; }
 
-  T & operator[](i64 idx) const { return ptr_[idx]; }
+  T & operator[](i64 idx) const { return ptr[idx]; }
 
-  T * begin() const { return ptr_; }
-  T * end() const { return ptr_ + n_; }
+  T * begin() const { return ptr; }
+  T * end() const { return ptr + n; }
 
-private:
-  T *ptr_;
-  i64 n_;
+  T *ptr;
+  i64 n;
 };
 
 }
