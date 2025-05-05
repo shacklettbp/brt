@@ -13,6 +13,7 @@ using i16 = int16_t;
 using u8 = uint8_t;
 using i8 = int8_t;
 using f32 = float;
+using CountT = int64_t;
 
 inline constexpr u32 operator ""_u32(unsigned long long v) 
 { 
