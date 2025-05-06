@@ -109,6 +109,18 @@ constexpr inline u32 roundToAlignment(u32 offset, u32 alignment)
 #endif
 }
 
+constexpr inline uint64_t roundUpPow2(uint64_t offset, uint64_t alignment)
+{
+#ifdef MADRONA_MSVC
+#pragma warning(push)
+#pragma warning(disable : 4146)
+#endif
+    return (offset + alignment - 1) & -alignment;
+#ifdef MADRONA_MSVC
+#pragma warning(pop)
+#endif
+}
+
 constexpr inline i32 roundToAlignment(i32 offset, i32 alignment)
 {
     return (i32)roundToAlignment((u64)offset, (u64)alignment);

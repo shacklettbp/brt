@@ -56,6 +56,8 @@ constexpr inline i64 roundToAlignment(i64 offset, i64 alignment);
 constexpr inline u32 roundToAlignment(u32 offset, u32 alignment);
 constexpr inline i32 roundToAlignment(i32 offset, i32 alignment);
 
+constexpr inline uint64_t roundUpPow2(uint64_t offset, uint64_t alignment);
+
 inline uintptr_t alignPtrOffset(void *ptr, uintptr_t alignment);
 inline void * alignPtr(void *ptr, uintptr_t alignment);
 

@@ -1,10 +1,11 @@
 #include <brt/io.hpp>
 
 #include <brt/err.hpp>
+#include <brt/utils.hpp>
 
 #include <fstream>
 
-namespace madrona {
+namespace brt {
 
 char * readBinaryFile(const char *path,
                       size_t buffer_alignment,
@@ -27,12 +28,12 @@ char * readBinaryFile(const char *path,
     buffer_alignment = sizeof(void *);
   }
 
-  size_t alloc_size = utils::roundUpPow2(num_bytes, buffer_alignment);
+  size_t alloc_size = roundUpPow2(num_bytes, buffer_alignment);
 
   char *data = (char *)malloc(alloc_size);
   file.read(data, num_bytes);
   if (file.fail()) {
-    rawDeallocAligned(data);
+    free(data);
     return nullptr;
   }
 

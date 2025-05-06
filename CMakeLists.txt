@@ -47,6 +47,7 @@ add_library(brt STATIC
   math.hpp math.inl
   stack_alloc.hpp stack_alloc.inl stack_alloc.cpp
   opnewdel.cpp
+  io.hpp io.cpp
 )
 
 target_link_libraries(brt
