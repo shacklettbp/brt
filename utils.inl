@@ -82,12 +82,12 @@ constexpr inline T roundUp(T offset, T alignment)
 // alignment must be power of 2
 constexpr inline u64 roundToAlignment(u64 offset, u64 alignment)
 {
-#ifdef PROA_CXX_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(push)
 #pragma warning(disable : 4146)
 #endif
     return (offset + alignment - 1) & -alignment;
-#ifdef PROA_CXX_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(pop)
 #endif
 }
@@ -99,24 +99,24 @@ constexpr inline i64 roundToAlignment(i64 offset, i64 alignment)
 
 constexpr inline u32 roundToAlignment(u32 offset, u32 alignment)
 {
-#ifdef PROA_CXX_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(push)
 #pragma warning(disable : 4146)
 #endif
     return (offset + alignment - 1) & -alignment;
-#ifdef PROA_CXX_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(pop)
 #endif
 }
 
 constexpr inline uint64_t roundUpPow2(uint64_t offset, uint64_t alignment)
 {
-#ifdef MADRONA_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(push)
 #pragma warning(disable : 4146)
 #endif
     return (offset + alignment - 1) & -alignment;
-#ifdef MADRONA_MSVC
+#ifdef BRT_CXX_MSVC
 #pragma warning(pop)
 #endif
 }

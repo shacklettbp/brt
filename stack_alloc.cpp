@@ -19,7 +19,7 @@ static void deallocAligned(void *ptr)
 {
 #if defined(_LIBCPP_VERSION)
     free(ptr);
-#elif defined(MADRONA_MSVC)
+#elif defined(BRT_CXX_MSVC)
     _aligned_free(ptr);
 #else
     static_assert(false);
